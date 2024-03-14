@@ -1,6 +1,6 @@
 function addTask() {
-    var taskInput = document.getElementById("taskInput");
-    var inputValue = taskInput.value;
+    var textInput = document.getElementById("textInput");
+    var inputValue = textInput.value;
 
     if (inputValue === "") {
         alert("Syötä tekstiä lisätäksesi tehtävän.")
@@ -8,5 +8,5 @@ function addTask() {
     var li = document.createElement("li");
     li.textcontent = inputValue;
     document.getElementById("taskList").appendChild(li);
-    taskInput.value = "";
+    textInput.value = "";
 }
