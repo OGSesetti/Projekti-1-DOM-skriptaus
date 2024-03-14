@@ -8,12 +8,14 @@
 
 <body>
     <h1>Superhieno muistilista</h1>
-    <input type="text" id="textInput" placeholder="Lisää Tehtävä">
-    <button onclick="addTask()">Enter</button>>
-    <ul id="tasklist">
-    </ul>
 
-
+    <form action="taskList">
+        <input type="text" id="textInput" placeholder="Lisää Tehtävä">
+        <button onclick="addTask()">Lisää</button>>
+        <div>
+            <ul id="taskList"></ul>
+        </div>
+    </form>
 
     <script scr="script.js"></script>
 </body>
