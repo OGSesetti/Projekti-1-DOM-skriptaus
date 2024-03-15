@@ -10,17 +10,18 @@
 <body>
     <h1>Superhieno muistilista</h1>
 
+    <form>
+        <div>
+            <input type="text" id="textInput" placeholder="Lisää Tehtävä">
+            <button onclick="addTask()">Lisää</button>>
+            <button onclick="clearCompleted()">Poista valmiiksi merkityt</button>>
+            <button onclick="nuke()">Nuke</button>>
+        </div>
+        <div id="listContainer">
 
-    <div>
-        <input type="text" id="textInput" placeholder="Lisää Tehtävä">
-        <button onclick="addTask()">Lisää</button>>
-        <button onclick="nuke()">Nuke</button>>
-    </div>
-    <div id="listContainer">
-
-    </div>
-    </div>
-
+        </div>
+        </div>
+    </form>
 
     <script src="js/script.js"></script>
 </body>

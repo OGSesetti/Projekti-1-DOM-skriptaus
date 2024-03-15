@@ -1,4 +1,15 @@
 body {
-    background-color: rgb(78, 78, 78);
+    background-color: rgb(0, 0, 0);
     color: white;
 }
+
+h1 {
+    @font-face {
+        font-family: ;
+        src: url();
+    }
+
+    color: red;
+}
+
+/*Bladerunner-fontti punaisella H1:n ja keskitä sivu.
