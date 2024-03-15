@@ -61,5 +61,4 @@ function nuke() {
 
 function clearCompleted() {
 
-
 }

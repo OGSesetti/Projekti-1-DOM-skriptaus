@@ -1,15 +1,26 @@
+@font-face {
+    font-family: bladeRunner;
+    src: url("BLADRMF_.TTF") format("truetype");
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+}
+
+
 body {
+    margin: auto;
+    width: 50%;
     background-color: rgb(0, 0, 0);
     color: white;
 }
 
 h1 {
-    @font-face {
-        font-family: ;
-        src: url();
-    }
-
+    text-align: center;
+    font-family: bladeRunner;
     color: red;
+
 }
 
 /*Bladerunner-fontti punaisella H1:n ja keskitä sivu.
