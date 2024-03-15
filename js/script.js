@@ -6,6 +6,7 @@ tasksArray = tehtävälistamuuttuja
 tasks = avain tehtävien löytämiseen
 taskContainer = div, mihin tehtävät menee
 checkButton = nappi, jolla tehtävä merkataan tehdyksi
+notCompleted = variable jonka kautta tehdyt tehtävät suodatetaan pois listasta. Käytössä clearCompleted-funktiossa
 */
 
 //sivun lataamisen jälkeen localstorage tarkistetaan ja tallennetut tiedot laitetaan takaisin sivulle näkyviin
@@ -14,7 +15,6 @@ const tasksArray = storedTasks ? JSON.parse(storedTasks) : [];
 const listLocation = document.getElementById("listContainer")
 console.log(tasksArray);
 taskLoader();
-
 //Kirjoitettu tehtävä tallennetaan localStorageen jonka jälkeen tehtävä lisätään sivulle näkyviin elementCreator -funktiolla
 
 
@@ -44,22 +44,23 @@ function taskLoader() {
 }
 
 
-//funktio, joka lisää html-elementit
+//funktio, joka lisää html-elementit nappeineen
 function elementCreator(task) {
     let taskDiv = document.createElement("div");
     taskDiv.textContent = task.task;
     taskDiv.classList.add("task-item");
 
     let checkButton = document.createElement("button");
-    checkButton.textContent = "Joku symboli tähän";
+    checkButton.textContent = "Merkitse tehdyksi";
+    checkButton.classList.add("check-button");
     checkButton.addEventListener("click", function () {
-
-        task.done = true;
+        checkButton.classList.toggle("checked");
+        task.done = !task.done;
         localStorage.setItem("tasks", JSON.stringify(tasksArray));
-        taskDiv.style.textDecoration = "line-through";
     });
+    taskDiv.appendChild(checkButton);
     listLocation.appendChild(taskDiv);
-    listLocation.appendChild(checkButton);
+    if (task.done) { taskDiv.style.color = "gray"; }
 }
 
 
@@ -73,12 +74,18 @@ function nuke() {
 
 //poistaa valmiiksi merkityt tehtävät
 function clearCompleted() {
+    const notCompleted = tasksArray.filter(task => !task.done);
+    localStorage.setItem("tasks", JSON.stringify(notCompleted))
+    tasksArray.length = 0;
+    incompleteTasks.forEach(task => tasksArray.push(task));
+
+
+
     tasksArray.forEach((task, index) => {
         if (task.done) {
             tasksArray.splice(index, 1);
         }
     });
-    localStorage.setItem("tasks", JSON.stringify(tasksArray));
     listLocation.innerHTML = "";
     taskLoader();
 }
