@@ -30,24 +30,32 @@ document.querySelector = ("#enter").addeventListener("click.")(); {
 */
 
 //Kirjoitettu tehtävä lisätään listaan ja local storageen
+const storedTasks = localStorage.getItem("tasks");
+const tasksArray = storedTasks ? JSON.parse(storedTasks) : [];
+//const tasksArray = localStorage.getItem("tasks") ? JSON.parse(localStorage.getItem)("tasks") : [];
 
-const tasksArray = localStorage.getItem("tasks") ? JSON.parse(localStorage.getItem)("tasks") : null;
+console.log(tasksArray);
+taskLoader();
 
 function addTask() {
+
     let textInput = document.getElementById("textInput");
-    if (textInput == "") {
+    if (textInput.value == "") {
         alert("Syötä tekstiä lisätäksesi tehtävän.")
     }
     else {
+        let task = textInput.value;
+        tasksArray.push(task);
+        localStorage.setItem("tasks", JSON.stringify(tasksArray));
         elementCreator(task)
-
+        textInput.value = "";
     }
 }
 
 //localStorageen tallennetut tehtävät lisätään takaisin listaan
 function taskLoader() {
-    if (itemsArray != null) {
-        for (i = 0; i <= itemsArray.length; i++) {
+    if (tasksArray != null) {
+        for (i = 0; i < tasksArray.length; i++) {
             let key = "tasks" + i;
             let task = localStorage.getItem(key);
             elementCreator(task)
@@ -61,4 +69,8 @@ function elementCreator(task) {
     taskDiv.textContent = task;
     listLocation.appendChild(taskDiv);
 
+}
+
+function nuke() {
+    tasksArray.length = 0;
 }
