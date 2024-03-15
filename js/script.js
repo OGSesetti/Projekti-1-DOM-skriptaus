@@ -16,20 +16,22 @@ console.log(tasksArray);
 taskLoader();
 
 //Kirjoitettu tehtävä tallennetaan localStorageen jonka jälkeen tehtävä lisätään sivulle näkyviin elementCreator -funktiolla
-function addTask() {
 
+
+function addTask() {
     let textInput = document.getElementById("textInput");
     if (textInput.value == "") {
         alert("Syötä tekstiä lisätäksesi tehtävän.")
     }
     else {
         let task = textInput.value;
-        tasksArray.push(task);
+        tasksArray.push({ task: task, done: false });
         localStorage.setItem("tasks", JSON.stringify(tasksArray));
         elementCreator(task)
         textInput.value = "";
     }
 }
+
 
 //lukee localStoragen kaikki tehtävät ja lähettää ne elementCreatorille
 function taskLoader() {
@@ -40,13 +42,26 @@ function taskLoader() {
         }
     }
 }
+
+
 //funktio, joka lisää html-elementit
 function elementCreator(task) {
     let taskDiv = document.createElement("div");
-    taskDiv.textContent = task;
-    listLocation.appendChild(taskDiv);
+    taskDiv.textContent = task.task;
+    taskDiv.classList.add("task-item");
 
+    let checkButton = document.createElement("button");
+    checkButton.textContent = "Joku symboli tähän";
+    checkButton.addEventListener("click", function () {
+
+        task.done = true;
+        localStorage.setItem("tasks", JSON.stringify(tasksArray));
+        taskDiv.style.textDecoration = "line-through";
+    });
+    listLocation.appendChild(taskDiv);
+    listLocation.appendChild(checkButton);
 }
+
 
 //nuke tyhjentää kaiken
 function nuke() {
@@ -55,7 +70,15 @@ function nuke() {
     listLocation.innerHTML = "";
 }
 
+
 //poistaa valmiiksi merkityt tehtävät
 function clearCompleted() {
-
+    tasksArray.forEach((task, index) => {
+        if (task.done) {
+            tasksArray.splice(index, 1);
+        }
+    });
+    localStorage.setItem("tasks", JSON.stringify(tasksArray));
+    listLocation.innerHTML = "";
+    taskLoader();
 }

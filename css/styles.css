@@ -8,11 +8,9 @@
     src: url("BLADRMF_.TTF") format("truetype");
 }
 
-.center {
-    margin: auto;
-    width: 50%;
-}
-
+/*Blade Runner -fontti on lisätty kaksi kertaa, koska toinen toimii github pagesissa
+ja toinen toimii live server extensionilla.
+*/
 
 body {
     text-align: center;
@@ -24,8 +22,43 @@ h1 {
     text-align: center;
     font-family: bladeRunner;
     color: red;
+    font-size: 72px;
 
 }
 
-/*Blade Runner -fontti lisätty kaksi kertaa, koska toinen toimii github pagesissa
-ja toinen toimii live server extensionilla.
+.task-item {
+    text-align: left;
+    margin: auto;
+    width: 40%;
+    font-family: 'Secular One', sans-serif;
+    font-size: 20px;
+    column-count: 1;
+    border-color: white;
+    border-width: 0.5;
+    border-style: solid;
+}
+
+#textInput {
+    width: 257px;
+    min-height: 25px;
+    transform: translatex(0px) translatey(0px);
+    background-color: #000000;
+    color: #ffffff;
+
+}
+
+form {}
+
+button {
+    background-color: #000000;
+    color: #ffffff;
+    background-clip: border-box;
+    font-family: 'Sarpanch', sans-serif;
+    border-width: 1px;
+    border-color: #ffffff;
+    border-style: solid;
+}
+
+button:hover {
+    text-shadow: rgb(255, 255, 255) 0px 0px 2px, rgb(255, 255, 255) 0px 0px 4px, rgb(255, 255, 255) 0px 0px 6px, rgb(0, 255, 255) 0px 0px 8px, rgb(0, 255, 255) 0px 0px 12px, rgb(0, 255, 255) 0px 0px 16px, rgb(0, 255, 255) 0px 0px 20px;
+}
