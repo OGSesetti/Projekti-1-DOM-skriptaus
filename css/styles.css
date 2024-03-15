@@ -1,5 +1,10 @@
 @font-face {
     font-family: bladeRunner;
+    src: url("css/BLADRMF_.TTF") format("truetype");
+}
+
+@font-face {
+    font-family: bladeRunner;
     src: url("BLADRMF_.TTF") format("truetype");
 }
 
@@ -10,8 +15,8 @@
 
 
 body {
-    margin: auto;
-    width: 50%;
+
+    text-align: center;
     background-color: rgb(0, 0, 0);
     color: white;
 }
@@ -23,4 +28,5 @@ h1 {
 
 }
 
-/*Bladerunner-fontti punaisella H1:n ja keskitä sivu.
+/*Blade Runner -fontti lisätty kaksi kertaa, koska toinen toimii github pagesissa
+ja toinen toimii live server extensionilla.

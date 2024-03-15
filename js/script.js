@@ -6,19 +6,16 @@ tasksArray = tehtävälistamuuttuja
 tasks = avain tehtävien löytämiseen
 taskContainer = div, mihin tehtävät menee
 checkButton = nappi, jolla tehtävä merkataan tehdyksi
-nuke = funktio joak tyhjentää kaiken
-clearCompleted = funktio, joka tyhjentää valmiiksi merkityt tehtävät
 */
 
-//Kirjoitettu tehtävä lisätään listaan ja local storageen
+//sivun lataamisen jälkeen localstorage tarkistetaan ja tallennetut tiedot laitetaan takaisin sivulle näkyviin
 const storedTasks = localStorage.getItem("tasks");
 const tasksArray = storedTasks ? JSON.parse(storedTasks) : [];
 const listLocation = document.getElementById("listContainer")
-//const tasksArray = localStorage.getItem("tasks") ? JSON.parse(localStorage.getItem)("tasks") : [];
-
 console.log(tasksArray);
 taskLoader();
 
+//Kirjoitettu tehtävä tallennetaan localStorageen jonka jälkeen tehtävä lisätään sivulle näkyviin elementCreator -funktiolla
 function addTask() {
 
     let textInput = document.getElementById("textInput");
@@ -34,18 +31,16 @@ function addTask() {
     }
 }
 
-//localStorageen tallennetut tehtävät lisätään takaisin listaan
+//lukee localStoragen kaikki tehtävät ja lähettää ne elementCreatorille
 function taskLoader() {
     if (tasksArray != null) {
         for (let i = 0; i < tasksArray.length; i++) {
             let task = tasksArray[i];
-            //           let key = "tasks" + i;
-            //           let task = localStorage.getItem(key);
             elementCreator(task)
         }
     }
 }
-
+//funktio, joka lisää html-elementit
 function elementCreator(task) {
     let taskDiv = document.createElement("div");
     taskDiv.textContent = task;
@@ -53,12 +48,14 @@ function elementCreator(task) {
 
 }
 
+//nuke tyhjentää kaiken
 function nuke() {
     localStorage.removeItem("tasks");
     tasksArray.splice(0, tasksArray.length);
     listLocation.innerHTML = "";
 }
 
+//poistaa valmiiksi merkityt tehtävät
 function clearCompleted() {
 
 }
