@@ -33,7 +33,7 @@ h1 {
     justify-content: space-between;
     text-align: left;
     margin: auto;
-    width: 40%;
+    width: 25%;
     font-family: 'Secular One', sans-serif;
     font-size: 20px;
     column-count: 1;
@@ -51,8 +51,6 @@ h1 {
 
 }
 
-form {}
-
 button {
     background-color: #000000;
     color: #ffffff;
@@ -63,8 +61,12 @@ button {
     border-style: solid;
 }
 
-.checkbutton {}
-
 button:hover {
     text-shadow: rgb(255, 255, 255) 0px 0px 2px, rgb(255, 255, 255) 0px 0px 4px, rgb(255, 255, 255) 0px 0px 6px, rgb(0, 255, 255) 0px 0px 8px, rgb(0, 255, 255) 0px 0px 12px, rgb(0, 255, 255) 0px 0px 16px, rgb(0, 255, 255) 0px 0px 20px;
+}
+
+#nukeButton {
+    position: absolute;
+    bottom: 0px;
+
 }

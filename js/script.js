@@ -1,23 +1,16 @@
-/*
-Variablet ja muut nimet:
 
-textInput = viimeksi lisätyn tekstin sisältö
-tasksArray = tehtävälistamuuttuja
-tasks = avain tehtävien löytämiseen
-taskContainer = div, mihin tehtävät menee
-checkButton = nappi, jolla tehtävä merkataan tehdyksi
-notCompleted = variable jonka kautta tehdyt tehtävät suodatetaan pois listasta. Käytössä clearCompleted-funktiossa
-*/
+//Tässä on kaikki Superhienon muistilistan koodi.
 
-//sivun lataamisen jälkeen localstorage tarkistetaan ja tallennetut tiedot laitetaan takaisin sivulle näkyviin
+
+//form-muodon vuoksi sivu päivittyy aina mitään nappia painaessa, joten kaikki tieto tallennetaan localStorageen.
+//aina kun sivu latautuu, heti ensiksi taskLoader -funktio tulostaa elementCreatoria kutsumalla kaiken tallennetun takaisin ruudulle
 const storedTasks = localStorage.getItem("tasks");
 const tasksArray = storedTasks ? JSON.parse(storedTasks) : [];
 const listLocation = document.getElementById("listContainer")
 console.log(tasksArray);
 taskLoader();
-//Kirjoitettu tehtävä tallennetaan localStorageen jonka jälkeen tehtävä lisätään sivulle näkyviin elementCreator -funktiolla
 
-
+//addTask ottaa tekstisyötteen, tallentaa sen työntää sen localStorage-letkan perään ja lisää sen elementtinä elementCreatorilla
 function addTask() {
     let textInput = document.getElementById("textInput");
     if (textInput.value == "") {
@@ -33,7 +26,7 @@ function addTask() {
 }
 
 
-//lukee localStoragen kaikki tehtävät ja lähettää ne elementCreatorille
+//taskLoader on itsessään yksinkertainen looppi, joka pyörähtää taskArrayn läpi ja tulostaa kaiken tarpeellisen
 function taskLoader() {
     if (tasksArray != null) {
         for (let i = 0; i < tasksArray.length; i++) {
@@ -44,7 +37,7 @@ function taskLoader() {
 }
 
 
-//funktio, joka lisää html-elementit nappeineen
+//elementCreator lisää html-elementit nappeineen, sekä pitää tallennettuna, onko tehtävä tehty vai ei. Lisäksi se muuttaa tehtyjen tehtävien värin
 function elementCreator(task) {
     let taskDiv = document.createElement("div");
     taskDiv.textContent = task.task;
@@ -64,7 +57,7 @@ function elementCreator(task) {
 }
 
 
-//nuke tyhjentää kaiken
+//nuke -funktio tyhjentää kaiken tallennetun tiedon sen varalta, että ohjelma jää jotenkin jumiin
 function nuke() {
     localStorage.removeItem("tasks");
     tasksArray.splice(0, tasksArray.length);
@@ -72,15 +65,12 @@ function nuke() {
 }
 
 
-//poistaa valmiiksi merkityt tehtävät
+//clearCompleted poistaa tehdyt tehtävät listasta filtteröimällä ne pois
 function clearCompleted() {
     const notCompleted = tasksArray.filter(task => !task.done);
     localStorage.setItem("tasks", JSON.stringify(notCompleted))
     tasksArray.length = 0;
     incompleteTasks.forEach(task => tasksArray.push(task));
-
-
-
     tasksArray.forEach((task, index) => {
         if (task.done) {
             tasksArray.splice(index, 1);
