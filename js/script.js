@@ -20,8 +20,6 @@ function addTask() {
         let task = textInput.value;
         tasksArray.push({ task: task, done: false });
         localStorage.setItem("tasks", JSON.stringify(tasksArray));
-        elementCreator(task)
-        textInput.value = "";
     }
 }
 
@@ -77,5 +75,4 @@ function clearCompleted() {
         }
     });
     listLocation.innerHTML = "";
-    taskLoader();
 }
